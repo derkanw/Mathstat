@@ -32,7 +32,7 @@ def z_tr(sample, size):
 
 def build_params(distribution):
     for size in sizes:
-        mean_list, med_list, z_r_list, z_q_list, z_tr_list, e_list, d_list = [], [], [], [], [], [], []
+        mean_list, med_list, z_r_list, z_q_list, z_tr_list, e_list, d_list, left_list, right_list = [], [], [], [], [], [], [], [], []
         lists = [mean_list, med_list, z_r_list, z_q_list, z_tr_list]
 
         for i in range(repetitions):
@@ -47,9 +47,13 @@ def build_params(distribution):
         for part in lists:
             e_list.append(round(np.mean(part), rounding))
             d_list.append(round(np.std(part) ** 2, rounding))
+            left_list.append(round(np.mean(part), rounding) - round(np.std(part), rounding))
+            right_list.append(round(np.mean(part), rounding) + round(np.std(part), rounding))
 
-        print(e_list)
-        print(d_list)
+        #print(e_list)
+        #print(d_list)
+        print(left_list)
+        print(right_list)
 
 
 build_params(norm())
