@@ -208,6 +208,24 @@ URL: https://github.com/derkanw/Mathstat/tree/main/coursework
 
 \begin{figure}[H]
     \centering
+    \includegraphics[scale=0.8]{images/regression.png}
+    \caption{Пример регрессионной прямой}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.8]{images/a.png}
+    \caption{Гистограмма распределения параметра a регрессионной прямой}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.8]{images/b.png}
+    \caption{Гистограмма распределения параметра b регрессионной прямой}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
     \includegraphics[scale=0.8]{images/interpolation.png}
     \caption{Интерполированный сигнал}
 \end{figure}
@@ -226,18 +244,20 @@ URL: https://github.com/derkanw/Mathstat/tree/main/coursework
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.8]{images/time.png}
+    \includegraphics[scale=0.6]{images/time.jpg}
     \caption{Временная шкала сигнала}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.8]{images/hist.png}
+    \includegraphics[scale=0.6]{images/hist.jpg}
     \caption{Гистограмма распределения ширин временных бинов}
 \end{figure}
 
 \section{Обсуждение}
 Графики исходного сигнала и сигнала после интерполяции схожи. Это свидетельствует о том, что исходные данные о сигнале заданы по закону, который хорошо просматривается и имеет достаточную гладкость.
+
+По гистограммам распределения значений параметров регрессии можно сделать вывод, что параметр $a_k$ примерно равен $0.85$, а параметр $b_k$ близок к нулю.
 
 Для получения временной шкалы были использованы почти все точки сигнала, что является особенностью реализованного метода. При этом используется форма гармонических сигналов, что позволяет обрабатывать сигналы с частотой выше нескольких десятков мегагерц с достаточной точностью (порядка 10\%).
 

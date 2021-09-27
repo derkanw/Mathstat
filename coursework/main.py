@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import math
-from tolsolvty.Python.src.tolsolvty import tolsolvty
+from tolsolvty import tolsolvty
 
 
 def read_lines(file_name: str):
@@ -179,7 +179,7 @@ def get_amplitude(signal: list, points: list):
     return [y, a1, b1, a2, b2]
 
 
-def print_lines(data: list, a1: list, b1: list, a2: list, b2: list):
+def print_lines(data: list, a1: float, b1: float, a2: float, b2: float):
     width = 40
     x, y1, y2, time = [], [], [], []
 
@@ -206,14 +206,44 @@ def pi_scale(data: list, amplitude: float):
 
 def print_phases(data):
     x, y = [], []
-
     for element in data:
         x.append(1)
         y.append(element / (2 * math.pi))
     plt.xlabel('Временная шкала')
-    plt.scatter(data, x)
+    plt.scatter(y, x)
     plt.show()
     sns.distplot(y)
+    plt.show()
+
+
+def build_regression(data_set: list, levels: list):
+    a, b = [], []
+    for index in range(len(data_set[0])):
+        y = []
+        for data in data_set:
+            y.append(data[index])
+        z = np.polyfit(np.array(levels), np.array(y), 1)
+        a.append(z[0])
+        b.append(z[1])
+
+    y = []
+    for data in data_set:
+        y.append(data[0])
+    p = np.poly1d([a[0], b[0]])
+    xp = np.linspace(-0.5, 0.5, 100)
+    plt.plot(levels, y, '.', xp, p(xp))
+    plt.xlabel("Константы")
+    plt.ylabel("Значения")
+    plt.show()
+
+    build_hist(a)
+    build_hist(b)
+
+
+def build_hist(coeff: list):
+    plt.xlabel("Значения")
+    plt.ylabel("Общее количество")
+    plt.hist(coeff)
     plt.show()
 
 
@@ -230,7 +260,6 @@ for i in range(len(data_set)):
     data_set[i] = average_level(data_set[i], len(data_set[i]))
     print_data(data_set[i], len(data_set[i]), colors[i])
 plt.show()
-
 
 # print original signal
 signal_number = "2"
@@ -265,3 +294,6 @@ plt.show()
 
 # sampling phases
 print_phases(signal)
+
+# regression
+build_regression(data_set, dc)
